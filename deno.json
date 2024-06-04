@@ -9,9 +9,10 @@
         "indentWidth": 4
     },
     "imports": {
+        "@cross/test": "jsr:@cross/test@^0.0.9",
         "@std/assert": "jsr:@std/assert@^0.225.3"
     },
-    "exclude": [".vscode", "docs"],
+    "exclude": [".vscode", "docs", ".github"],
     "tasks": {
         "check": "deno publish --dry-run",
         "lint": "deno fmt --check && deno lint",

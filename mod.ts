@@ -1,6 +1,6 @@
 /**
- * A package provides implementation of complex numbers and mathematical functions
- * for complex numbers.
+ * A package provides implementation of complex numbers and some mathematical
+ * functions for complex numbers.
  *
  * The `Complex` class represents a complex number which has a real part and an
  * imaginary part. It is expressed in form `a + bi`, where:

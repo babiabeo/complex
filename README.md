@@ -18,7 +18,7 @@ real part is `0`.
 
 ## `Complex` class
 
-This package provides an implementation of complex numbers through `Complex`
+This package provides an implementation of complex numbers through the `Complex`
 class. It has methods to perform basic operations on complex numbers:
 
 ```ts
@@ -31,19 +31,19 @@ cmplx1.add(cmplx2); // (3 + i) + (2 + 9i) = (5 + 10i)
 complx1.add(3); // (3 + i) + 3 = (3 + i) + (3 + 0i) = (6 + i)
 ```
 
-Methods `conj()`, `abs()`, `phase()` return the conjuntion, absolute value, and
+Methods `conj()`, `abs()`, `phase()` return the conjugate, absolute value, and
 argument of the complex number respectively:
 
 ```ts
 cmplx2.conj(); // (2 - 9i)
-cmplx2.abs(); // 9.219544457292889 ≈ Math.sqrt(85)
+cmplx2.abs(); // ≈ 9.219544457292889 = Math.sqrt(85)
 cmplx2.phase(); // 1.3521273809209546
 ```
 
 ## `ComplexMath`
 
-Like `Math`, `ComplexMath` also provides some basic mathematics functionality
-for complex numbers.
+Like `Math`, `ComplexMath` also provides basic mathematics functionality for
+complex numbers.
 
 ```ts
 ComplexMath.sin(cmplxNumber);

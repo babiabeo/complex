@@ -18,7 +18,7 @@ import { sqrt } from "./power.ts";
  *
  * @example
  * ```ts
- * ComplexMath.sin(new ComplexMath(1, 1)); // 1.2984575814159773 + 0.6349639147847361i
+ * ComplexMath.sin(new Complex(1, 1)); // 1.2984575814159773 + 0.6349639147847361i
  * ```
  */
 export function sin(a: complex): complex {
@@ -31,7 +31,7 @@ export function sin(a: complex): complex {
 
     if (isInf(i)) {
         if (r === 0) {
-            return a;
+            return new Complex(r, i);
         }
 
         if (isNaN2(r) || isInf(r)) {
@@ -40,7 +40,7 @@ export function sin(a: complex): complex {
     }
 
     if (r === 0 && isNaN2(i)) {
-        return a;
+        return new Complex(r, i);
     }
 
     const [cosh, sinh] = coshSinh(i);
@@ -58,7 +58,7 @@ export function sin(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.cos(new ComplexMath(1, 1)); // 0.8337300251311491 - 0.9888977057628651i
+ * ComplexMath.cos(new Complex(1, 1)); // 0.8337300251311491 - 0.9888977057628651i
  * ```
  */
 export function cos(a: complex): complex {
@@ -66,12 +66,12 @@ export function cos(a: complex): complex {
     const i = a.imag;
 
     if (i === 0 && (isInf(r) || isNaN2(r))) {
-        return new Complex(NaN, i);
+        return new Complex(NaN);
     }
 
     if (isInf(i)) {
         if (r === 0) {
-            return Complex.fromRealNum(POS_INF);
+            return new Complex(POS_INF);
         }
 
         if (isNaN2(r) || isInf(r)) {
@@ -98,23 +98,19 @@ export function cos(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.tan(new ComplexMath(1, 1)); // 0.27175258531951174 + 1.0839233273386948i
+ * ComplexMath.tan(new Complex(1, 1)); // 0.27175258531951174 + 1.0839233273386948i
  * ```
  */
 export function tan(a: complex): complex {
     const r = a.real;
     const i = a.imag;
 
-    if (i === 0 && (isInf(r) || isNaN2(r))) {
-        return new Complex(NaN, i);
-    }
-
     if (isInf(i)) {
-        return Complex.fromImagNum(sign(i));
+        return new Complex(0, sign(i));
     }
 
     if (r === 0 && isNaN2(i)) {
-        return a;
+        return new Complex(r, i);
     }
 
     let d = Math.cosh(2 * i) + Math.cos(2 * r);
@@ -140,7 +136,7 @@ export function tan(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.cot(new ComplexMath(1, 1)); // 0.2176215618544027 - 0.868014142895925i
+ * ComplexMath.cot(new Complex(1, 1)); // 0.2176215618544027 - 0.868014142895925i
  * ```
  */
 export function cot(a: complex): complex {
@@ -170,7 +166,7 @@ export function cot(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.asin(new ComplexMath(1, 1)); // 0.6662394324925153 + 1.0612750619050355i
+ * ComplexMath.asin(new Complex(1, 1)); // 0.6662394324925153 + 1.0612750619050355i
  * ```
  */
 export function asin(a: complex): complex {
@@ -187,7 +183,7 @@ export function asin(a: complex): complex {
 
     if (isNaN2(i)) {
         if (r === 0) {
-            return a;
+            return new Complex(r, NaN);
         }
 
         if (isInf(r)) {
@@ -199,14 +195,14 @@ export function asin(a: complex): complex {
 
     if (isInf(i)) {
         if (isNaN2(r)) {
-            return a;
+            return new Complex(r, i);
         }
 
         if (isInf(r)) {
             return new Complex(sign(r) * Math.PI / 4, i);
         }
 
-        return Complex.fromImagNum(i);
+        return new Complex(0, i);
     }
 
     if (isInf(r)) {
@@ -232,7 +228,7 @@ export function asin(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.acos(new ComplexMath(1, 1)); // 0.9045568943023813 - 1.0612750619050355i
+ * ComplexMath.acos(new Complex(1, 1)); // 0.9045568943023813 - 1.0612750619050355i
  * ```
  */
 export function acos(a: complex): complex {
@@ -247,7 +243,7 @@ export function acos(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.atan(new ComplexMath(1, 1)); // 1.0172219678978514 + 0.40235947810852507i
+ * ComplexMath.atan(new Complex(1, 1)); // 1.0172219678978514 + 0.40235947810852507i
  * ```
  */
 export function atan(a: complex): complex {
@@ -255,19 +251,19 @@ export function atan(a: complex): complex {
     const i = a.imag;
 
     if (i === 0) {
-        return Complex.fromRealNum(Math.atan(r));
+        return new Complex(Math.atan(r), i);
     }
 
     if (r === 0 && Math.abs(i) <= 1) {
-        return Complex.fromImagNum(Math.atanh(i));
+        return new Complex(r, Math.atanh(i));
     }
 
     if (isInf(r) || isInf(i)) {
         if (isNaN2(r)) {
-            return Complex.fromRealNum(NaN);
+            return new Complex(NaN);
         }
 
-        return Complex.fromRealNum(sign(r) * (Math.PI / 2));
+        return new Complex(sign(r) * (Math.PI / 2));
     }
 
     if (isNaN2(r) || isNaN2(i)) {

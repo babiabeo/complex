@@ -9,7 +9,7 @@ import { acos, asin, atan } from "./trigonometric.ts";
  *
  * @example
  * ```ts
- * ComplexMath.sinh(new ComplexMath(1, 1)); // 0.6349639147847361 + 1.2984575814159773i
+ * ComplexMath.sinh(new Complex(1, 1)); // 0.6349639147847361 + 1.2984575814159773i
  * ```
  */
 export function sinh(a: complex): complex {
@@ -22,7 +22,7 @@ export function sinh(a: complex): complex {
 
     if (isInf(r)) {
         if (i === 0) {
-            return a;
+            return new Complex(r, i);
         }
 
         if (isInf(i) || isNaN2(i)) {
@@ -47,7 +47,7 @@ export function sinh(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.cosh(new ComplexMath(1, 1)); // 0.8337300251311491 + 0.9888977057628651i
+ * ComplexMath.cosh(new Complex(1, 1)); // 0.8337300251311491 + 0.9888977057628651i
  * ```
  */
 export function cosh(a: complex): complex {
@@ -55,12 +55,12 @@ export function cosh(a: complex): complex {
     const i = a.imag;
 
     if (r === 0 && (isInf(i) || isNaN2(i))) {
-        return Complex.fromRealNum(NaN);
+        return new Complex(NaN);
     }
 
     if (isInf(r)) {
         if (i === 0) {
-            return Complex.fromRealNum(POS_INF);
+            return new Complex(POS_INF);
         }
 
         if (isInf(i) || isNaN2(i)) {
@@ -85,7 +85,7 @@ export function cosh(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.tanh(new ComplexMath(1, 1)); // 1.0839233273386948 + 0.27175258531951174i
+ * ComplexMath.tanh(new Complex(1, 1)); // 1.0839233273386948 + 0.27175258531951174i
  * ```
  */
 export function tanh(a: complex): complex {
@@ -93,11 +93,11 @@ export function tanh(a: complex): complex {
     const i = a.imag;
 
     if (isInf(r)) {
-        return Complex.fromRealNum(sign(r));
+        return new Complex(sign(r));
     }
 
     if (i === 0 && isNaN2(r)) {
-        return a;
+        return new Complex(NaN, i);
     }
 
     const d = Math.cosh(2 * r) + Math.cos(2 * i);
@@ -119,7 +119,7 @@ export function tanh(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.asinh(new ComplexMath(1, 1)); // 1.0612750619050355 + 0.6662394324925153i
+ * ComplexMath.asinh(new Complex(1, 1)); // 1.0612750619050355 + 0.6662394324925153i
  * ```
  */
 export function asinh(a: complex): complex {
@@ -134,7 +134,7 @@ export function asinh(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.acosh(new ComplexMath(1, 1)); // 1.0612750619050355 + 0.9045568943023813i
+ * ComplexMath.acosh(new Complex(1, 1)); // 1.0612750619050355 + 0.9045568943023813i
  * ```
  */
 export function acosh(a: complex): complex {
@@ -149,7 +149,7 @@ export function acosh(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.atanh(new ComplexMath(1, 1)); // 0.40235947810852507 + 1.0172219678978514i
+ * ComplexMath.atanh(new Complex(1, 1)); // 0.40235947810852507 + 1.0172219678978514i
  * ```
  */
 export function atanh(a: complex): complex {
