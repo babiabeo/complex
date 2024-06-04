@@ -1,5 +1,5 @@
 import { Complex, type complex } from "../complex.ts";
-import { POS_INF } from "../utils.ts";
+import { POS_INF, isInf } from "../utils.ts";
 
 /**
  * Returns the square root of the complex number.
@@ -17,16 +17,20 @@ export function sqrt(a: complex): complex {
 
     if (a.imag === 0) {
         if (a.real === 0) {
-            return new Complex();
+            return new Complex(0, a.imag);
         }
 
         r = Math.sqrt(Math.abs(a.real));
 
         if (a.real < 0) {
-            return Complex.fromImagNum(r);
+            return new Complex(r, a.imag);
         }
 
         return new Complex(r, a.imag);
+    }
+
+    if (isInf(a.imag)) {
+        return new Complex(POS_INF, a.imag);
     }
 
     if (a.real === 0) {
@@ -83,7 +87,7 @@ export function sqrt(a: complex): complex {
  * @example
  * ```ts
  * ComplexMath.pow(new Complex(0, 0), 4); // 0 + 0i
- * ComplexMath.pow(new Complex(3, 3), 4); // -324 + 0i
+ * ComplexMath.pow(new Complex(3, 1), 4); // ≈ 28 + 96i
  * ```
  */
 export function pow(a: complex, n: number): complex {
@@ -100,7 +104,7 @@ export function pow(a: complex, n: number): complex {
     }
 
     if (n === 0) {
-        return Complex.fromRealNum(1);
+        return new Complex(1);
     }
 
     const r = Math.pow(a.abs(), n);
@@ -120,7 +124,6 @@ export function pow(a: complex, n: number): complex {
  *
  * @param a The complex number
  * @param b The complex `b`-th power
- * @returns A new complex number
  *
  * @example
  * ```ts
@@ -139,12 +142,12 @@ export function powCmplx(a: complex, b: complex): complex {
         const imag = b.imag;
 
         if (real === 0) {
-            return Complex.fromRealNum(1);
+            return new Complex(1);
         }
 
         if (real < 0) {
             if (imag === 0) {
-                return Complex.fromRealNum(POS_INF);
+                return new Complex(POS_INF);
             }
 
             return Complex.Inf();

@@ -4,7 +4,7 @@ export const POS_INF = Number.POSITIVE_INFINITY;
 
 /** Whether the number is an infinity. */
 export function isInf(n: number): boolean {
-    return !Number.isFinite(n);
+    return !isNaN2(n) && !Number.isFinite(n);
 }
 
 /** Whether the number is NaN (not-a-number). */

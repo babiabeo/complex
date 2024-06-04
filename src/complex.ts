@@ -12,12 +12,12 @@ export type complex = Complex;
  * new Complex(14, 6); // 14 + 6i
  *
  * // A complex number can be also created from a real number
- * Complex.fromRealNum(4);    // 4 + 0i
- * Complex.fromRealNum(32.9); // 32.9 + 0i
+ * Complex.fromReal(4);    // 4 + 0i
+ * Complex.fromReal(32.9); // 32.9 + 0i
  *
  * // or a purely imaginary number
- * Complex.fromImagNum(11); // 0 + 11i
- * Complex.fromImagNum(6);  // 0 + 6i
+ * Complex.fromImag(11); // 0 + 11i
+ * Complex.fromImag(6);  // 0 + 6i
  * ```
  */
 export class Complex {
@@ -51,29 +51,61 @@ export class Complex {
      * Creates a new complex number from a real number.
      *
      * @param real A real number
-     * @returns A new complex number
      *
      * @example
      * ```ts
-     * Complex.fromRealNum(2); // 2 + 0i
-     * Complex.fromRealNum(0); // 0 + 0i
+     * Complex.fromReal(2); // 2 + 0i
+     * Complex.fromReal(0); // 0 + 0i
      * ```
      */
-    static fromRealNum(real: number): Complex {
-        return new Complex(real, 0);
+    static fromReal(real: number): Complex {
+        return new Complex(real);
     }
 
     /**
      * Creates a new complex number from a purely imaginary number.
      *
      * @param imag A purely imaginary number
-     * @returns A new complex number
+     *
+     * @example
+     * ```ts
+     * Complex.fromImag(1);  // 0 + i
+     * Complex.fromImag(10); // 0 + 10i
+     * ```
+     */
+    static fromImag(imag: number): Complex {
+        return new Complex(0, imag);
+    }
+
+    /**
+     * Creates a new complex number from a real number.
+     *
+     * @param real A real 
+     *
+     * @example
+     * ```ts
+     * Complex.fromRealNum(2); // 2 + 0i
+     * Complex.fromRealNum(0); // 0 + 0i
+     * ```
+     * 
+     * @deprecated (will be removed after v1.0.1) Use {@linkcode fromReal} instead
+     */
+    static fromRealNum(real: number): Complex {
+        return new Complex(real);
+    }
+
+    /**
+     * Creates a new complex number from a purely imaginary number.
+     *
+     * @param imag A purely imaginary number
      *
      * @example
      * ```ts
      * Complex.fromImagNum(1);  // 0 + i
      * Complex.fromImagNum(10); // 0 + 10i
      * ```
+     * 
+     * @deprecated (will be removed after v1.0.1) Use {@linkcode fromImag} instead
      */
     static fromImagNum(imag: number): Complex {
         return new Complex(0, imag);
@@ -172,7 +204,6 @@ export class Complex {
      * Adds a real number to the complex number.
      *
      * @param other A real number.
-     * @returns The result of addition.
      *
      * @example
      * ```ts
@@ -186,7 +217,6 @@ export class Complex {
      * Adds two complex numbers.
      *
      * @param other The other complex number.
-     * @returns The result of addition.
      *
      * @example
      * ```ts
@@ -212,7 +242,6 @@ export class Complex {
      * Subtracts a real number from the complex number.
      *
      * @param other A real number.
-     * @returns The result of subtraction.
      *
      * @example
      * ```ts
@@ -226,7 +255,6 @@ export class Complex {
      * Subtracts two complex numbers.
      *
      * @param other The other complex number.
-     * @returns The result of subtraction.
      *
      * @example
      * ```ts
@@ -252,7 +280,6 @@ export class Complex {
      * Calculates the product of a real number and the complex number.
      *
      * @param other A real number.
-     * @returns The result of multiplication.
      *
      * @example
      * ```ts
@@ -266,7 +293,6 @@ export class Complex {
      * Calculates the product of two complex numbers.
      *
      * @param other The other complex number.
-     * @returns The result of multiplication.
      *
      * @example
      * ```ts
@@ -297,7 +323,6 @@ export class Complex {
      * Calculates the quotient of the complex number and a real number.
      *
      * @param other The other complex number.
-     * @returns The result of multiplication.
      *
      * @example
      * ```ts
@@ -311,7 +336,6 @@ export class Complex {
      * Calculates the quotient of two complex numbers.
      *
      * @param other The other complex number.
-     * @returns The result of division.
      *
      * @example
      * ```ts

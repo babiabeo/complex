@@ -1,7 +1,8 @@
+import { test } from "@cross/test";
 import { assertAlmostEquals, assertEquals } from "@std/assert";
 import { Complex } from "../mod.ts";
 
-Deno.test("Complex parts", () => {
+test("Complex parts", () => {
     const cmplx = new Complex(3, 5);
 
     assertEquals(cmplx.real, 3);
@@ -9,7 +10,7 @@ Deno.test("Complex parts", () => {
     assertEquals(String(cmplx), "3 + 5i");
 });
 
-Deno.test("Complex addition", () => {
+test("Complex addition", () => {
     const cmplx1 = new Complex(3, 5);
     const cmplx2 = new Complex(3, 5);
 
@@ -17,7 +18,7 @@ Deno.test("Complex addition", () => {
     assertEquals(cmplx1.add(2), new Complex(5, 5));
 });
 
-Deno.test("Complex subtraction", () => {
+test("Complex subtraction", () => {
     const cmplx1 = new Complex(86, 15);
     const cmplx2 = new Complex(21, 9);
 
@@ -25,7 +26,7 @@ Deno.test("Complex subtraction", () => {
     assertEquals(cmplx1.sub(7), new Complex(79, 15));
 });
 
-Deno.test("Complex multiplication", () => {
+test("Complex multiplication", () => {
     const cmplx1 = new Complex(3, 2);
     const cmplx2 = new Complex(4, -1);
 
@@ -33,7 +34,7 @@ Deno.test("Complex multiplication", () => {
     assertEquals(cmplx1.mult(3), new Complex(9, 6));
 });
 
-Deno.test("Complex division", () => {
+test("Complex division", () => {
     const cmplx1 = new Complex(3, 2);
     const cmplx2 = new Complex(4, -1);
 
@@ -44,7 +45,7 @@ Deno.test("Complex division", () => {
     assertEquals(cmplx1.div(2), new Complex(1.5, 1));
 });
 
-Deno.test("Complex conjuntion, absolute value, argument", () => {
+test("Complex conjugate, absolute value, argument", () => {
     const cmplx = new Complex(10, 10);
 
     assertEquals(cmplx.abs(), 10 * Math.sqrt(2));
