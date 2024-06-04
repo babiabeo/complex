@@ -1,6 +1,6 @@
 {
     "name": "@babia/complex",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "exports": {
         ".": "./mod.ts",
         "./math": "./src/math/mod.ts"
