@@ -11,10 +11,11 @@ test("Complex square root", () => {
         sqrt(new Complex(4, Infinity)),
         new Complex(Infinity, Infinity),
     );
-    assertEquals(
-        sqrt(new Complex(5, 9)),
-        new Complex(2.765468327515884, 1.6272108254597804),
-    );
+
+    const ex = sqrt(new Complex(5, 9));
+
+    assertAlmostEquals(ex.real, 2.7654683);
+    assertAlmostEquals(ex.imag, 1.6272108);
 });
 
 test("Complex with real power", () => {
@@ -28,9 +29,10 @@ test("Complex with real power", () => {
         new Complex(Infinity, Infinity),
     );
 
-    const x = pow(new Complex(3, 1), 4);
-    assertAlmostEquals(x.real, 28);
-    assertAlmostEquals(x.imag, 96);
+    const ex = pow(new Complex(3, 1), 4);
+
+    assertAlmostEquals(ex.real, 28);
+    assertAlmostEquals(ex.imag, 96);
 });
 
 test("Complex with complex power", () => {

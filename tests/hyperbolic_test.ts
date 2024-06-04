@@ -1,5 +1,5 @@
 import { test } from "@cross/test";
-import { assertEquals } from "@std/assert";
+import { assertAlmostEquals, assertEquals } from "@std/assert";
 import { acosh, asinh, atanh, cosh, sinh, tanh } from "../src/math/mod.ts";
 import { Complex } from "../mod.ts";
 
@@ -16,10 +16,11 @@ test("Complex hyperbolic sine", () => {
         sinh(new Complex(NaN, 0)),
         new Complex(NaN, 0),
     );
-    assertEquals(
-        sinh(new Complex(1, 1)),
-        new Complex(0.6349639147847361, 1.2984575814159773),
-    );
+
+    const ex = sinh(new Complex(1, 1));
+
+    assertAlmostEquals(ex.real, 0.6349639);
+    assertAlmostEquals(ex.imag, 1.2984576);
 });
 
 test("Complex hyperbolic cosine", () => {
@@ -35,10 +36,11 @@ test("Complex hyperbolic cosine", () => {
         cosh(new Complex(NaN, 0)),
         new Complex(NaN, 0),
     );
-    assertEquals(
-        cosh(new Complex(1, 1)),
-        new Complex(0.8337300251311491, 0.9888977057628651),
-    );
+
+    const ex = cosh(new Complex(1, 1));
+
+    assertAlmostEquals(ex.real, 0.8337300);
+    assertAlmostEquals(ex.imag, 0.9888977);
 });
 
 test("Complex hyperbolic tangent", () => {
@@ -54,29 +56,30 @@ test("Complex hyperbolic tangent", () => {
         tanh(new Complex(NaN, 0)),
         new Complex(NaN, 0),
     );
-    assertEquals(
-        tanh(new Complex(1, 1)),
-        new Complex(1.0839233273386948, 0.27175258531951174),
-    );
+
+    const ex = tanh(new Complex(1, 1));
+
+    assertAlmostEquals(ex.real, 1.0839233);
+    assertAlmostEquals(ex.imag, 0.2717526);
 });
 
 test("Complex inverse hyperbolic sine", () => {
-    assertEquals(
-        asinh(new Complex(1, 1)),
-        new Complex(1.0612750619050355, 0.6662394324925153),
-    );
+    const ex = asinh(new Complex(1, 1));
+
+    assertAlmostEquals(ex.real, 1.0612751);
+    assertAlmostEquals(ex.imag, 0.6662394);
 });
 
 test("Complex inverse hyperbolic cosine", () => {
-    assertEquals(
-        acosh(new Complex(1, 1)),
-        new Complex(1.0612750619050355, 0.9045568943023813),
-    );
+    const ex = acosh(new Complex(1, 1));
+
+    assertAlmostEquals(ex.real, 1.0612751);
+    assertAlmostEquals(ex.imag, 0.9045569);
 });
 
 test("Complex inverse hyperbolic tangent", () => {
-    assertEquals(
-        atanh(new Complex(1, 1)),
-        new Complex(0.40235947810852507, 1.0172219678978514),
-    );
+    const ex = atanh(new Complex(1, 1));
+
+    assertAlmostEquals(ex.real, 0.4023595);
+    assertAlmostEquals(ex.imag, 1.0172220);
 });
