@@ -42,8 +42,8 @@ cmplx2.phase(); // 1.3521273809209546
 
 ## `ComplexMath`
 
-Like `Math`, `ComplexMath` also provides basic mathematics functionality
-for complex numbers.
+Like `Math`, `ComplexMath` also provides basic mathematics functionality for
+complex numbers.
 
 ```ts
 ComplexMath.sin(cmplxNumber);

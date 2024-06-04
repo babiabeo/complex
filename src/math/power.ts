@@ -1,5 +1,5 @@
 import { Complex, type complex } from "../complex.ts";
-import { POS_INF, isInf } from "../utils.ts";
+import { isInf, POS_INF } from "../utils.ts";
 
 /**
  * Returns the square root of the complex number.

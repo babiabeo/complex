@@ -80,14 +80,14 @@ export class Complex {
     /**
      * Creates a new complex number from a real number.
      *
-     * @param real A real 
+     * @param real A real
      *
      * @example
      * ```ts
      * Complex.fromRealNum(2); // 2 + 0i
      * Complex.fromRealNum(0); // 0 + 0i
      * ```
-     * 
+     *
      * @deprecated (will be removed after v1.0.1) Use {@linkcode fromReal} instead
      */
     static fromRealNum(real: number): Complex {
@@ -104,7 +104,7 @@ export class Complex {
      * Complex.fromImagNum(1);  // 0 + i
      * Complex.fromImagNum(10); // 0 + 10i
      * ```
-     * 
+     *
      * @deprecated (will be removed after v1.0.1) Use {@linkcode fromImag} instead
      */
     static fromImagNum(imag: number): Complex {
