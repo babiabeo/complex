@@ -1,5 +1,5 @@
-import { Complex, type complex } from "../complex.ts";
-import { isInf, POS_INF } from "../utils.ts";
+import { cmplx, Complex, type complex } from "../complex.ts";
+import { isInf, isNumber, POS_INF } from "../utils.ts";
 
 /**
  * Returns the square root of the complex number.
@@ -8,8 +8,8 @@ import { isInf, POS_INF } from "../utils.ts";
  *
  * @example
  * ```ts
- * ComplexMath.sqrt(new Complex(4, 0)); // 2
- * ComplexMath.sqrt(new Complex(0, 0)); // 0
+ * ComplexMath.sqrt(cmplx(4, 0)); // 2
+ * ComplexMath.sqrt(cmplx(0, 0)); // 0
  * ```
  */
 export function sqrt(a: complex): complex {
@@ -17,30 +17,30 @@ export function sqrt(a: complex): complex {
 
     if (a.imag === 0) {
         if (a.real === 0) {
-            return new Complex(0, a.imag);
+            return cmplx(0, a.imag);
         }
 
         r = Math.sqrt(Math.abs(a.real));
 
         if (a.real < 0) {
-            return new Complex(r, a.imag);
+            return cmplx(r, a.imag);
         }
 
-        return new Complex(r, a.imag);
+        return cmplx(r, a.imag);
     }
 
     if (isInf(a.imag)) {
-        return new Complex(POS_INF, a.imag);
+        return cmplx(POS_INF, a.imag);
     }
 
     if (a.real === 0) {
         r = Math.sqrt(Math.abs(a.imag) * 0.5);
 
         if (a.imag > 0) {
-            return new Complex(r, r);
+            return cmplx(r, r);
         }
 
-        return new Complex(r, -r);
+        return cmplx(r, -r);
     }
 
     let x = a.real;
@@ -57,7 +57,7 @@ export function sqrt(a: complex): complex {
         scale = 7.450580596923828125e-9; // 2^-27
     }
 
-    r = new Complex(x, y).abs();
+    r = cmplx(x, y).abs();
     let t = 0;
 
     if (x > 0) {
@@ -71,52 +71,86 @@ export function sqrt(a: complex): complex {
     }
 
     if (y < 0) {
-        return new Complex(t, -r);
+        return cmplx(t, -r);
     }
 
-    return new Complex(t, r);
+    return cmplx(t, r);
 }
 
 /**
- * Returns the `n`-th power of a complex number using
- * {@link https://en.wikipedia.org/wiki/De_Moivre%27s_formula | de Moivre's formula}.
+ * Returns the `n`-th power of a complex number.
  *
  * @param a A complex number
  * @param n A real number
  *
  * @example
  * ```ts
- * ComplexMath.pow(new Complex(0, 0), 4); // 0 + 0i
- * ComplexMath.pow(new Complex(3, 1), 4); // ≈ 28 + 96i
+ * ComplexMath.pow(cmplx(0, 0), 4); // 0 + 0i
+ * ComplexMath.pow(cmplx(3, 1), 4); // ≈ 28 + 96i
  * ```
  */
-export function pow(a: complex, n: number): complex {
+export function pow(a: complex, n: number): complex;
+/**
+ * Raises the complex number to the complex `b`-th power.
+ *
+ * @param a A complex number
+ * @param b The complex `b`-th power
+ *
+ * @example
+ * ```ts
+ * const i = cmplx(0, 1);
+ *
+ * ComplexMath.pow(i, i); // i^i = e^(-pi / 2) = 0.20787957635076193
+ * ```
+ */
+export function pow(a: complex, b: complex): complex;
+export function pow(a: complex, nb: number | complex): complex {
+    if (isNumber(nb)) {
+        nb = cmplx(nb);
+    }
+
     if (a.isZero()) {
-        if (isNaN(n)) {
+        if (nb.isNaN()) {
             return Complex.NaN();
         }
 
-        if (n > 0) {
-            return new Complex();
+        const real = nb.real;
+        const imag = nb.imag;
+
+        if (real === 0) {
+            return cmplx(1);
         }
 
-        return Complex.Inf();
+        if (real < 0) {
+            if (imag === 0) {
+                return cmplx(POS_INF);
+            }
+
+            return Complex.Inf();
+        }
+
+        return cmplx(0);
     }
 
-    if (n === 0) {
-        return new Complex(1);
+    const modulus = a.abs();
+    if (modulus === 0) {
+        return cmplx(0);
     }
 
-    const r = Math.pow(a.abs(), n);
-    if (r === 0) {
-        return new Complex();
+    const arg = a.phase();
+
+    let r = Math.pow(modulus, nb.real);
+    let theta = nb.real * arg;
+
+    if (nb.imag !== 0) {
+        r *= Math.exp(-nb.imag * arg);
+        theta += nb.imag * Math.log(modulus);
     }
 
-    const p = a.phase();
-    const cos = Math.cos(n * p);
-    const sin = Math.sin(n * p);
+    const cos = Math.cos(theta);
+    const sin = Math.sin(theta);
 
-    return new Complex(r * cos, r * sin);
+    return cmplx(r * cos, r * sin);
 }
 
 /**
@@ -127,10 +161,12 @@ export function pow(a: complex, n: number): complex {
  *
  * @example
  * ```ts
- * const i = new Complex(0, 1);
+ * const i = cmplx(0, 1);
  *
  * ComplexMath.powCmplx(i, i); // i^i = e^(-pi / 2) = 0.20787957635076193
  * ```
+ *
+ * @deprecated (will be removed after v1.1.0) Use {@linkcode pow} instead.
  */
 export function powCmplx(a: complex, b: complex): complex {
     if (a.isZero()) {
@@ -142,23 +178,23 @@ export function powCmplx(a: complex, b: complex): complex {
         const imag = b.imag;
 
         if (real === 0) {
-            return new Complex(1);
+            return cmplx(1);
         }
 
         if (real < 0) {
             if (imag === 0) {
-                return new Complex(POS_INF);
+                return cmplx(POS_INF);
             }
 
             return Complex.Inf();
         }
 
-        return new Complex();
+        return cmplx(0);
     }
 
     const modulus = a.abs();
     if (modulus === 0) {
-        return new Complex();
+        return cmplx(0);
     }
 
     const arg = a.phase();
@@ -174,5 +210,5 @@ export function powCmplx(a: complex, b: complex): complex {
     const cos = Math.cos(theta);
     const sin = Math.sin(theta);
 
-    return new Complex(r * cos, r * sin);
+    return cmplx(r * cos, r * sin);
 }

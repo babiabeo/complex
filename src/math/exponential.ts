@@ -1,4 +1,4 @@
-import { Complex, type complex } from "../complex.ts";
+import { cmplx, type complex } from "../complex.ts";
 import { isInf, isNaN2, POS_INF } from "../utils.ts";
 
 /**
@@ -9,7 +9,7 @@ import { isInf, isNaN2, POS_INF } from "../utils.ts";
  *
  * @example
  * ```ts
- * ComplexMath.exp(new Complex(3, 4)); // -13.128783081462158 - 15.200784463067954i
+ * ComplexMath.exp(cmplx(3, 4)); // -13.128783081462158 - 15.200784463067954i
  * ```
  */
 export function exp(a: complex): complex {
@@ -23,10 +23,10 @@ export function exp(a: complex): complex {
 
         if (isInf(i) || isNaN2(i)) {
             if (r < 0) {
-                return new Complex();
+                return cmplx(0);
             }
 
-            return new Complex(POS_INF, NaN);
+            return cmplx(POS_INF, NaN);
         }
     }
 
@@ -35,7 +35,7 @@ export function exp(a: complex): complex {
     }
 
     const e = Math.exp(r);
-    return new Complex(e * Math.cos(i), e * Math.sin(i));
+    return cmplx(e * Math.cos(i), e * Math.sin(i));
 }
 
 /**
@@ -45,11 +45,11 @@ export function exp(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.log(new Complex(3, 4)); // 1.6094379124341003 + 0.9272952180016122i
+ * ComplexMath.log(cmplx(3, 4)); // 1.6094379124341003 + 0.9272952180016122i
  * ```
  */
 export function log(a: complex): complex {
-    return new Complex(Math.log(a.abs()), a.phase());
+    return cmplx(Math.log(a.abs()), a.phase());
 }
 
 /**
@@ -59,7 +59,7 @@ export function log(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.log10(new Complex(3, 4)); // 0.6989700043360187 + 0.4027191962733731i
+ * ComplexMath.log10(cmplx(3, 4)); // 0.6989700043360187 + 0.4027191962733731i
  * ```
  */
 export function log10(a: complex): complex {

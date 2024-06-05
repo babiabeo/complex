@@ -1,7 +1,23 @@
 import { isInf, isNaN2, isNumber, POS_INF } from "./utils.ts";
 
-/** Alias type of {@linkcode Complex}. */
+/** Type alias of {@linkcode Complex}. */
 export type complex = Complex;
+
+/**
+ * Creates a new complex number.
+ *
+ * @param real The real part
+ * @param imag The imaginary part
+ *
+ * @example
+ * ```ts
+ * cmplx(0);      // 0 + 0i
+ * cmplx(2.2, 2); // 2.2 + 2i
+ * ```
+ */
+export function cmplx(real: number, imag?: number): complex {
+    return new Complex(real, imag);
+}
 
 /**
  * Represents a complex number which has a real part and an imaginary part.
@@ -35,7 +51,7 @@ export class Complex {
      * Returns a complex number whose real part
      * and imaginary part are both positive infinity.
      */
-    static Inf(): Complex {
+    static Inf(): complex {
         return new Complex(POS_INF, POS_INF);
     }
 
@@ -43,7 +59,7 @@ export class Complex {
      * Returns a complex number whose real part
      * and imaginary part are NaN (not-a-number).
      */
-    static NaN(): Complex {
+    static NaN(): complex {
         return new Complex(NaN, NaN);
     }
 
@@ -58,7 +74,7 @@ export class Complex {
      * Complex.fromReal(0); // 0 + 0i
      * ```
      */
-    static fromReal(real: number): Complex {
+    static fromReal(real: number): complex {
         return new Complex(real);
     }
 
@@ -73,41 +89,7 @@ export class Complex {
      * Complex.fromImag(10); // 0 + 10i
      * ```
      */
-    static fromImag(imag: number): Complex {
-        return new Complex(0, imag);
-    }
-
-    /**
-     * Creates a new complex number from a real number.
-     *
-     * @param real A real
-     *
-     * @example
-     * ```ts
-     * Complex.fromRealNum(2); // 2 + 0i
-     * Complex.fromRealNum(0); // 0 + 0i
-     * ```
-     *
-     * @deprecated (will be removed after v1.0.1) Use {@linkcode fromReal} instead
-     */
-    static fromRealNum(real: number): Complex {
-        return new Complex(real);
-    }
-
-    /**
-     * Creates a new complex number from a purely imaginary number.
-     *
-     * @param imag A purely imaginary number
-     *
-     * @example
-     * ```ts
-     * Complex.fromImagNum(1);  // 0 + i
-     * Complex.fromImagNum(10); // 0 + 10i
-     * ```
-     *
-     * @deprecated (will be removed after v1.0.1) Use {@linkcode fromImag} instead
-     */
-    static fromImagNum(imag: number): Complex {
+    static fromImag(imag: number): complex {
         return new Complex(0, imag);
     }
 
@@ -121,7 +103,7 @@ export class Complex {
      * cmplx.conj();                    // 3 - 9i
      * ```
      */
-    conj(): Complex {
+    conj(): complex {
         return new Complex(this.real, -this.imag);
     }
 
@@ -212,7 +194,7 @@ export class Complex {
      * cmplx.add(3);                     // 6 + 2i
      * ```
      */
-    add(other: number): Complex;
+    add(other: number): complex;
     /**
      * Adds two complex numbers.
      *
@@ -226,8 +208,8 @@ export class Complex {
      * cmplx1.add(cmplx2);                // 7 + i
      * ```
      */
-    add(other: Complex): Complex;
-    add(other: number | Complex): Complex {
+    add(other: complex): complex;
+    add(other: number | complex): complex {
         if (isNumber(other)) {
             return new Complex(this.real + other, this.imag);
         }
@@ -250,7 +232,7 @@ export class Complex {
      * cmplx.sub(6);                     // -3 + 2i
      * ```
      */
-    sub(other: number): Complex;
+    sub(other: number): complex;
     /**
      * Subtracts two complex numbers.
      *
@@ -264,8 +246,8 @@ export class Complex {
      * cmplx1.sub(cmplx2);                // -1 + 3i
      * ```
      */
-    sub(other: Complex): Complex;
-    sub(other: number | Complex): Complex {
+    sub(other: complex): complex;
+    sub(other: number | complex): complex {
         if (isNumber(other)) {
             return new Complex(this.real - other, this.imag);
         }
@@ -288,7 +270,7 @@ export class Complex {
      * cmplx.mult(5);                    // 15 + 10i
      * ```
      */
-    mult(other: number): Complex;
+    mult(other: number): complex;
     /**
      * Calculates the product of two complex numbers.
      *
@@ -302,8 +284,8 @@ export class Complex {
      * cmplx1.mult(cmplx2);               // 14 + 5i
      * ```
      */
-    mult(other: Complex): Complex;
-    mult(other: number | Complex): Complex {
+    mult(other: complex): complex;
+    mult(other: number | complex): complex {
         if (isNumber(other)) {
             return new Complex(this.real * other, this.imag * other);
         }
@@ -331,7 +313,7 @@ export class Complex {
      * cmplx.div(2);                     // 1.5 + i
      * ```
      */
-    div(other: number): Complex;
+    div(other: number): complex;
     /**
      * Calculates the quotient of two complex numbers.
      *
@@ -345,8 +327,8 @@ export class Complex {
      * cmplx1.div(cmplx2);                // 0.5882352941176471 + 0.6470588235294118i
      * ```
      */
-    div(other: Complex): Complex;
-    div(other: number | Complex): Complex {
+    div(other: complex): complex;
+    div(other: number | complex): complex {
         if (isNumber(other)) {
             return new Complex(this.real / other, this.imag / other);
         }
