@@ -1,4 +1,4 @@
-import { Complex, type complex } from "../complex.ts";
+import { cmplx, Complex, type complex } from "../complex.ts";
 import {
     coshSinh,
     isInf,
@@ -18,7 +18,7 @@ import { sqrt } from "./power.ts";
  *
  * @example
  * ```ts
- * ComplexMath.sin(new Complex(1, 1)); // 1.2984575814159773 + 0.6349639147847361i
+ * ComplexMath.sin(cmplx(1, 1)); // 1.2984575814159773 + 0.6349639147847361i
  * ```
  */
 export function sin(a: complex): complex {
@@ -26,26 +26,26 @@ export function sin(a: complex): complex {
     const i = a.imag;
 
     if (i === 0 && (isInf(r) || isNaN2(r))) {
-        return new Complex(NaN, i);
+        return cmplx(NaN, i);
     }
 
     if (isInf(i)) {
         if (r === 0) {
-            return new Complex(r, i);
+            return cmplx(r, i);
         }
 
         if (isNaN2(r) || isInf(r)) {
-            return new Complex(NaN, i);
+            return cmplx(NaN, i);
         }
     }
 
     if (r === 0 && isNaN2(i)) {
-        return new Complex(r, i);
+        return cmplx(r, i);
     }
 
     const [cosh, sinh] = coshSinh(i);
 
-    return new Complex(
+    return cmplx(
         Math.sin(r) * cosh,
         Math.cos(r) * sinh,
     );
@@ -58,7 +58,7 @@ export function sin(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.cos(new Complex(1, 1)); // 0.8337300251311491 - 0.9888977057628651i
+ * ComplexMath.cos(cmplx(1, 1)); // 0.8337300251311491 - 0.9888977057628651i
  * ```
  */
 export function cos(a: complex): complex {
@@ -66,26 +66,26 @@ export function cos(a: complex): complex {
     const i = a.imag;
 
     if (i === 0 && (isInf(r) || isNaN2(r))) {
-        return new Complex(NaN);
+        return cmplx(NaN);
     }
 
     if (isInf(i)) {
         if (r === 0) {
-            return new Complex(POS_INF);
+            return cmplx(POS_INF);
         }
 
         if (isNaN2(r) || isInf(r)) {
-            return new Complex(POS_INF, NaN);
+            return cmplx(POS_INF, NaN);
         }
     }
 
     if (r === 0 && isNaN2(i)) {
-        return Complex.fromRealNum(NaN);
+        return cmplx(NaN);
     }
 
     const [cosh, sinh] = coshSinh(i);
 
-    return new Complex(
+    return cmplx(
         Math.cos(r) * cosh,
         -Math.sin(r) * sinh,
     );
@@ -98,7 +98,7 @@ export function cos(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.tan(new Complex(1, 1)); // 0.27175258531951174 + 1.0839233273386948i
+ * ComplexMath.tan(cmplx(1, 1)); // 0.27175258531951174 + 1.0839233273386948i
  * ```
  */
 export function tan(a: complex): complex {
@@ -106,11 +106,11 @@ export function tan(a: complex): complex {
     const i = a.imag;
 
     if (isInf(i)) {
-        return new Complex(0, sign(i));
+        return cmplx(0, sign(i));
     }
 
     if (r === 0 && isNaN2(i)) {
-        return new Complex(r, i);
+        return cmplx(r, i);
     }
 
     let d = Math.cosh(2 * i) + Math.cos(2 * r);
@@ -123,7 +123,7 @@ export function tan(a: complex): complex {
         return Complex.Inf();
     }
 
-    return new Complex(
+    return cmplx(
         Math.sin(2 * r) / d,
         Math.sinh(2 * i) / d,
     );
@@ -136,7 +136,7 @@ export function tan(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.cot(new Complex(1, 1)); // 0.2176215618544027 - 0.868014142895925i
+ * ComplexMath.cot(cmplx(1, 1)); // 0.2176215618544027 - 0.868014142895925i
  * ```
  */
 export function cot(a: complex): complex {
@@ -153,7 +153,7 @@ export function cot(a: complex): complex {
         return Complex.Inf();
     }
 
-    return new Complex(
+    return cmplx(
         Math.sin(2 * r) / d,
         -Math.sinh(2 * i) / d,
     );
@@ -166,7 +166,7 @@ export function cot(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.asin(new Complex(1, 1)); // 0.6662394324925153 + 1.0612750619050355i
+ * ComplexMath.asin(cmplx(1, 1)); // 0.6662394324925153 + 1.0612750619050355i
  * ```
  */
 export function asin(a: complex): complex {
@@ -174,20 +174,20 @@ export function asin(a: complex): complex {
     const i = a.imag;
 
     if (i === 0 && Math.abs(r) <= 1) {
-        return new Complex(Math.asin(r), i);
+        return cmplx(Math.asin(r), i);
     }
 
     if (r === 0 && Math.abs(i) <= 1) {
-        return new Complex(r, Math.asinh(i));
+        return cmplx(r, Math.asinh(i));
     }
 
     if (isNaN2(i)) {
         if (r === 0) {
-            return new Complex(r, NaN);
+            return cmplx(r, NaN);
         }
 
         if (isInf(r)) {
-            return new Complex(NaN, r);
+            return cmplx(NaN, r);
         }
 
         return Complex.NaN();
@@ -195,30 +195,30 @@ export function asin(a: complex): complex {
 
     if (isInf(i)) {
         if (isNaN2(r)) {
-            return new Complex(r, i);
+            return cmplx(r, i);
         }
 
         if (isInf(r)) {
-            return new Complex(sign(r) * Math.PI / 4, i);
+            return cmplx(sign(r) * Math.PI / 4, i);
         }
 
-        return new Complex(0, i);
+        return cmplx(0, i);
     }
 
     if (isInf(r)) {
-        return new Complex(
+        return cmplx(
             sign(r) * (Math.PI / 2),
             sign(i) * r,
         );
     }
 
-    const ct = new Complex(-i, r); // (a + bi) * i = -b + ai
+    const ct = cmplx(-i, r); // (a + bi) * i = -b + ai
 
-    const aa = new Complex((r - i) * (r + i), 2 * r * i);
-    const a1 = new Complex(1 - aa.real, -aa.imag);
+    const aa = cmplx((r - i) * (r + i), 2 * r * i);
+    const a1 = cmplx(1 - aa.real, -aa.imag);
     const a2 = log(sqrt(a1).add(ct));
 
-    return new Complex(a2.imag, -a2.real); // (a + bi) * (-i) = b - ai
+    return cmplx(a2.imag, -a2.real); // (a + bi) * (-i) = b - ai
 }
 
 /**
@@ -228,12 +228,12 @@ export function asin(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.acos(new Complex(1, 1)); // 0.9045568943023813 - 1.0612750619050355i
+ * ComplexMath.acos(cmplx(1, 1)); // 0.9045568943023813 - 1.0612750619050355i
  * ```
  */
 export function acos(a: complex): complex {
     const as = asin(a);
-    return new Complex((Math.PI / 2) - as.real, -as.imag);
+    return cmplx((Math.PI / 2) - as.real, -as.imag);
 }
 
 /**
@@ -243,7 +243,7 @@ export function acos(a: complex): complex {
  *
  * @example
  * ```ts
- * ComplexMath.atan(new Complex(1, 1)); // 1.0172219678978514 + 0.40235947810852507i
+ * ComplexMath.atan(cmplx(1, 1)); // 1.0172219678978514 + 0.40235947810852507i
  * ```
  */
 export function atan(a: complex): complex {
@@ -251,19 +251,19 @@ export function atan(a: complex): complex {
     const i = a.imag;
 
     if (i === 0) {
-        return new Complex(Math.atan(r), i);
+        return cmplx(Math.atan(r), i);
     }
 
     if (r === 0 && Math.abs(i) <= 1) {
-        return new Complex(r, Math.atanh(i));
+        return cmplx(r, Math.atanh(i));
     }
 
     if (isInf(r) || isInf(i)) {
         if (isNaN2(r)) {
-            return new Complex(NaN);
+            return cmplx(NaN);
         }
 
-        return new Complex(sign(r) * (Math.PI / 2));
+        return cmplx(sign(r) * (Math.PI / 2));
     }
 
     if (isNaN2(r) || isNaN2(i)) {
@@ -290,5 +290,5 @@ export function atan(a: complex): complex {
     t = i + 1;
     aa = (r2 + (t * t)) / aa;
 
-    return new Complex(w, 0.25 * Math.log(aa));
+    return cmplx(w, 0.25 * Math.log(aa));
 }

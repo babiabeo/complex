@@ -22,8 +22,8 @@ This package provides an implementation of complex numbers through the `Complex`
 class. It has methods to perform basic operations on complex numbers:
 
 ```ts
-const cmplx1 = new Complex(3, 1); // 3 + i
-const cmplx2 = new Complex(2, 9); // 2 + 9i
+const cmplx1 = cmplx(3, 1); // 3 + i
+const cmplx2 = cmplx(2, 9); // 2 + 9i
 
 cmplx1.add(cmplx2); // (3 + i) + (2 + 9i) = (5 + 10i)
 

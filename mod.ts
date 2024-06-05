@@ -10,8 +10,8 @@
  *
  * For example
  * ```ts
- * const cmplx1 = new Complex(1, 9); // 1 + 9i
- * const cmplx2 = new Complex(5, 4); // 5 + 4i
+ * const cmplx1 = cmplx(1, 9); // 1 + 9i
+ * const cmplx2 = cmplx(5, 4); // 5 + 4i
  * ```
  *
  * It has methods to perform basic operations, such as `add()`, `sub()`, etc.
