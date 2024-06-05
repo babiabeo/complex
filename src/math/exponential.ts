@@ -9,6 +9,8 @@ import { isInf, isNaN2, POS_INF } from "../utils.ts";
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.exp(cmplx(3, 4)); // -13.128783081462158 - 15.200784463067954i
  * ```
  */
@@ -45,6 +47,8 @@ export function exp(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.log(cmplx(3, 4)); // 1.6094379124341003 + 0.9272952180016122i
  * ```
  */
@@ -59,6 +63,8 @@ export function log(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.log10(cmplx(3, 4)); // 0.6989700043360187 + 0.4027191962733731i
  * ```
  */

@@ -9,6 +9,8 @@ import { acos, asin, atan } from "./trigonometric.ts";
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.sinh(cmplx(1, 1)); // 0.6349639147847361 + 1.2984575814159773i
  * ```
  */
@@ -44,6 +46,8 @@ export function sinh(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.cosh(cmplx(1, 1)); // 0.8337300251311491 + 0.9888977057628651i
  * ```
  */
@@ -79,6 +83,8 @@ export function cosh(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.tanh(cmplx(1, 1)); // 1.0839233273386948 + 0.27175258531951174i
  * ```
  */
@@ -110,6 +116,8 @@ export function tanh(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.asinh(cmplx(1, 1)); // 1.0612750619050355 + 0.6662394324925153i
  * ```
  */
@@ -125,6 +133,8 @@ export function asinh(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.acosh(cmplx(1, 1)); // 1.0612750619050355 + 0.9045568943023813i
  * ```
  */
@@ -140,6 +150,8 @@ export function acosh(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.atanh(cmplx(1, 1)); // 0.40235947810852507 + 1.0172219678978514i
  * ```
  */

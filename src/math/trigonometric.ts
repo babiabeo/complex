@@ -18,6 +18,8 @@ import { sqrt } from "./power.ts";
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.sin(cmplx(1, 1)); // 1.2984575814159773 + 0.6349639147847361i
  * ```
  */
@@ -58,6 +60,8 @@ export function sin(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.cos(cmplx(1, 1)); // 0.8337300251311491 - 0.9888977057628651i
  * ```
  */
@@ -98,6 +102,8 @@ export function cos(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.tan(cmplx(1, 1)); // 0.27175258531951174 + 1.0839233273386948i
  * ```
  */
@@ -136,6 +142,8 @@ export function tan(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.cot(cmplx(1, 1)); // 0.2176215618544027 - 0.868014142895925i
  * ```
  */
@@ -166,6 +174,8 @@ export function cot(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.asin(cmplx(1, 1)); // 0.6662394324925153 + 1.0612750619050355i
  * ```
  */
@@ -228,6 +238,8 @@ export function asin(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.acos(cmplx(1, 1)); // 0.9045568943023813 - 1.0612750619050355i
  * ```
  */
@@ -243,6 +255,8 @@ export function acos(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.atan(cmplx(1, 1)); // 1.0172219678978514 + 0.40235947810852507i
  * ```
  */

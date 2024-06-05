@@ -1,7 +1,7 @@
 # complex
 
 [![JSR](https://jsr.io/badges/@babia/complex)](https://jsr.io/@babia/complex)
-[![JSR Score](https://jsr.io/badges/@babia/complex/score)](https://jsr.io/@babia/complex)
+[![CI](https://github.com/babiabeo/complex/actions/workflows/ci.yml/badge.svg)](https://github.com/babiabeo/complex/actions/workflows/ci.yml)
 
 A package provides implementation of complex numbers and mathematical functions
 for complex numbers.
@@ -25,13 +25,13 @@ This package provides an implementation of complex numbers through the `Complex`
 class. It has methods to perform basic operations on complex numbers:
 
 ```ts
-const cmplx1 = cmplx(3, 1); // 3 + i
-const cmplx2 = cmplx(2, 9); // 2 + 9i
+const cmplx1 = new Complex(3, 1); // 3 + i
+const cmplx2 = new Complex(2, 9); // 2 + 9i
 
 cmplx1.add(cmplx2); // (3 + i) + (2 + 9i) = (5 + 10i)
 
 // Also works with real numbers
-complx1.add(3); // (3 + i) + 3 = (3 + i) + (3 + 0i) = (6 + i)
+cmplx1.add(3); // (3 + i) + 3 = (3 + i) + (3 + 0i) = (6 + i)
 ```
 
 Methods `conj()`, `abs()`, `phase()` return the conjugate, absolute value, and
@@ -43,27 +43,65 @@ cmplx2.abs(); // ≈ 9.219544457292889 = Math.sqrt(85)
 cmplx2.phase(); // 1.3521273809209546
 ```
 
-## `ComplexMath`
+## `cmplx` function
 
-Like `Math`, `ComplexMath` also provides basic mathematics functionality for
-complex numbers.
+For convenience, the `cmplx` function was added in `v1.1.0` to help create
+complex numbers more easily.
 
 ```ts
-ComplexMath.sin(cmplxNumber);
-ComplexMath.log(cmplxNumber);
-ComplexMath.exp(cmplxNumber);
-ComplexMath.tanh(cmplxNumber);
-ComplexMath.sqrt(cmplxNumber);
+cmplx(2, 3); // 2 + 3i
+```
 
-// and more...
+Unlike the `Complex` class, the `cmplx` function requires the first argument
+(the real part).
+
+```ts
+cmplx(0); // 0 + 0i
+```
+
+## `ComplexMath`
+
+Like [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math), `ComplexMath` provides basic mathematics functionality for
+complex numbers.
+
+- Exponential and logarithm functions
+
+```ts
+ComplexMath.exp();
+ComplexMath.log();
+// ...
+```
+
+- Hyperbolic functions:
+
+```ts
+ComplexMath.sinh();
+ComplexMath.atanh();
+// ...
+```
+
+- Power functions:
+
+```ts
+ComplexMath.sqrt();
+ComplexMath.pow();
+// ...
+```
+
+- Trigonometric functions:
+
+```ts
+ComplexMath.asin();
+ComplexMath.tan();
+// ...
 ```
 
 ## Related
 
-- [C++ `std::complex`](https://en.cppreference.com/w/cpp/numeric/complex)
-- [Python `complex`](https://docs.python.org/3/library/functions.html#complex)
+- Go [`math/cmplx`](https://pkg.go.dev/math/cmplx)
+- C++ [`std::complex`](https://en.cppreference.com/w/cpp/numeric/complex)
+- Python [`complex`](https://docs.python.org/3/library/functions.html#complex)
   and [`cmath`](https://docs.python.org/3/library/cmath.html)
-- [Go `math/cmplx`](https://pkg.go.dev/math/cmplx)
 
 ## License
 

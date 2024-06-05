@@ -8,6 +8,8 @@ import { isInf, isNumber, POS_INF } from "../utils.ts";
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.sqrt(cmplx(4, 0)); // 2
  * ComplexMath.sqrt(cmplx(0, 0)); // 0
  * ```
@@ -85,6 +87,8 @@ export function sqrt(a: complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * ComplexMath.pow(cmplx(0, 0), 4); // 0 + 0i
  * ComplexMath.pow(cmplx(3, 1), 4); // ≈ 28 + 96i
  * ```
@@ -98,6 +102,8 @@ export function pow(a: complex, n: number): complex;
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * const i = cmplx(0, 1);
  *
  * ComplexMath.pow(i, i); // i^i = e^(-pi / 2) = 0.20787957635076193
@@ -161,6 +167,8 @@ export function pow(a: complex, nb: number | complex): complex {
  *
  * @example
  * ```ts
+ * import { ComplexMath, cmplx } from "@babia/complex";
+ *
  * const i = cmplx(0, 1);
  *
  * ComplexMath.powCmplx(i, i); // i^i = e^(-pi / 2) = 0.20787957635076193

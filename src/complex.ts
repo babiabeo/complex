@@ -11,6 +11,8 @@ export type complex = Complex;
  *
  * @example
  * ```ts
+ * import { cmplx } from "@babia/complex";
+ *
  * cmplx(0);      // 0 + 0i
  * cmplx(2.2, 2); // 2.2 + 2i
  * ```
@@ -24,6 +26,8 @@ export function cmplx(real: number, imag?: number): complex {
  *
  * @example
  * ```ts
+ * import { Complex } from "@babia/complex";
+ *
  * new Complex(1, 9);  // 1 + 9i
  * new Complex(14, 6); // 14 + 6i
  *
@@ -70,6 +74,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * Complex.fromReal(2); // 2 + 0i
      * Complex.fromReal(0); // 0 + 0i
      * ```
@@ -85,6 +91,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * Complex.fromImag(1);  // 0 + i
      * Complex.fromImag(10); // 0 + 10i
      * ```
@@ -98,6 +106,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(3, 9); // 3 + 9i
      *
      * cmplx.conj();                    // 3 - 9i
@@ -112,6 +122,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(3, 4); // 3 + 4i
      *
      * cmplx.abs();                     // 5
@@ -126,6 +138,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(2, 7); // 2 + 7i
      *
      * cmplx.phase();                   // 1.292496667...
@@ -141,6 +155,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * new Complex(Infinity, 4).isInf();  // true
      * new Complex(21, Infinity).isInf(); // true
      * new Complex(0, 17).isInf();        // false
@@ -156,6 +172,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * new Complex(4, 4).isNaN();         // false
      * new Complex(21, Infinity).isNaN(); // false
      * new Complex(NaN, NaN).isNaN();     // true
@@ -174,6 +192,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * new Complex(4, 4).isZero(); // false
      * new Complex(0, 0).isZero(); // true
      * ```
@@ -189,6 +209,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(3, 2);  // 3 + 2i
      *
      * cmplx.add(3);                     // 6 + 2i
@@ -202,6 +224,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx1 = new Complex(3, 2);  // 3 + 2i
      * const cmplx2 = new Complex(4, -1); // 4 - i
      *
@@ -227,6 +251,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(3, 2);  // 3 + 2i
      *
      * cmplx.sub(6);                     // -3 + 2i
@@ -240,6 +266,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx1 = new Complex(3, 2);  // 3 + 2i
      * const cmplx2 = new Complex(4, -1); // 4 - i
      *
@@ -265,6 +293,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(3, 2);  // 3 + 2i
      *
      * cmplx.mult(5);                    // 15 + 10i
@@ -278,6 +308,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx1 = new Complex(3, 2);  // 3 + 2i
      * const cmplx2 = new Complex(4, -1); // 4 - i
      *
@@ -308,6 +340,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx = new Complex(3, 2);  // 3 + 2i
      *
      * cmplx.div(2);                     // 1.5 + i
@@ -321,6 +355,8 @@ export class Complex {
      *
      * @example
      * ```ts
+     * import { Complex } from "@babia/complex";
+     *
      * const cmplx1 = new Complex(3, 2);  // 3 + 2i
      * const cmplx2 = new Complex(4, -1); // 4 - i
      *
