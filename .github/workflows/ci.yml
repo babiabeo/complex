@@ -35,7 +35,7 @@ jobs:
         run: bunx jsr add @cross/test @std/assert
 
       - name: Run tests canary
-        run: bun test
+        run: bun test --bail
 
   deno-test:
     runs-on: ${{ matrix.os }}
@@ -62,7 +62,7 @@ jobs:
         run: deno add @cross/test @std/assert
 
       - name: Run tests
-        run: deno task test
+        run: deno task test:deno
 
   node-test:
     runs-on: ${{ matrix.os }}

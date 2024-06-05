@@ -10,14 +10,18 @@
     },
     "imports": {
         "@cross/test": "jsr:@cross/test@^0.0.9",
-        "@std/assert": "jsr:@std/assert@^0.225.3"
+        "@std/assert": "jsr:@std/assert@^0.225.3",
+        "@babia/complex": "./mod.ts"
     },
-    "exclude": [".vscode", "docs", ".github"],
+    "exclude": [".vscode", "docs", ".github", "README.md", "LICENSE"],
     "tasks": {
-        "check": "deno publish --dry-run",
+        "check": "deno publish --dry-run --allow-dirty",
         "lint": "deno fmt --check && deno lint",
-        "test": "deno test",
-        "ok": "deno task lint && deno task check && deno task test",
+        "test:bun": "bun test --bail",
+        "test:deno": "deno test --trace-leaks --doc --parallel --clean",
+        "test:node": "echo '{ \"type\": \"module\" }' > package.json && npx --yes tsx --test",
+        "test": "deno task test:bun && deno task test:deno && deno task test:node",
+        "ok": "deno task lint && deno task test && deno task check ",
         "doc:view": "deno doc --html --name=\"@babia/complex\" ./mod.ts"
     }
 }
