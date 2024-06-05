@@ -1,5 +1,8 @@
 # complex
 
+[![JSR](https://jsr.io/badges/@babia/complex)](https://jsr.io/@babia/complex)
+[![JSR Score](https://jsr.io/badges/@babia/complex/score)](https://jsr.io/@babia/complex)
+
 A package provides implementation of complex numbers and mathematical functions
 for complex numbers.
 
