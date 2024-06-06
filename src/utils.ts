@@ -97,8 +97,7 @@ export function reducePi(n: number): number {
         t += 0.5;
     }
 
-    const i = Math.trunc(t);
-    t = i;
+    t = Math.trunc(t);
 
     return ((n - t * DP1) - t * DP2) - t * DP3;
 }
