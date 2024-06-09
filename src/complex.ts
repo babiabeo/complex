@@ -1,4 +1,4 @@
-import { isInf, isNaN2, isNumber, POS_INF } from "./utils.ts";
+import { isInf, isNaN2, isNumber, POS_INF } from "./_utils.ts";
 
 /** Type alias of {@linkcode Complex}. */
 export type complex = Complex;

@@ -1,5 +1,5 @@
 import { cmplx, Complex, type complex } from "../complex.ts";
-import { isInf, isNaN2, POS_INF, sign } from "../utils.ts";
+import { isInf, isNaN2, POS_INF, sign } from "../_utils.ts";
 import { acos, asin, atan } from "./trigonometric.ts";
 
 /**
