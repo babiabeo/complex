@@ -32,10 +32,10 @@ jobs:
           bun-version: ${{ matrix.bun }}
       
       - name: Install packages
-        run: bunx jsr add @cross/test @std/assert
+        run: bunx jsr add @cross/test @std/assert@^0.226.0
 
       - name: Run tests canary
-        run: bun test --bail
+        run: bun test
 
   deno-test:
     runs-on: ${{ matrix.os }}
@@ -59,7 +59,7 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Install packages
-        run: deno add @cross/test @std/assert
+        run: deno add @cross/test @std/assert@^0.226.0
 
       - name: Run tests
         run: deno task test:deno
@@ -86,7 +86,7 @@ jobs:
           node-version: ${{ matrix.node }}
       
       - name: Install packages
-        run: npx jsr add @cross/test @std/assert
+        run: npx jsr add @cross/test @std/assert@^0.226.0
 
       - name: Add package.json
         run: "echo '{ \"type\": \"module\" }' > package.json"
