@@ -7,7 +7,7 @@ import {
     reducePi,
     sign,
     tans,
-} from "../utils.ts";
+} from "../_utils.ts";
 import { log } from "./exponential.ts";
 import { sqrt } from "./power.ts";
 

@@ -2,7 +2,7 @@ import { test } from "@cross/test";
 import { assertAlmostEquals, assertEquals } from "@std/assert";
 import { pow, sqrt } from "../src/math/mod.ts";
 import { cmplx, Complex } from "../src/complex.ts";
-import { POS_INF } from "../src/utils.ts";
+import { POS_INF } from "../src/_utils.ts";
 
 test("Complex square root", () => {
     assertEquals(sqrt(cmplx(0)), cmplx(0));

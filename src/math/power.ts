@@ -1,5 +1,5 @@
 import { cmplx, Complex, type complex } from "../complex.ts";
-import { isInf, isNumber, POS_INF } from "../utils.ts";
+import { isInf, isNumber, POS_INF } from "../_utils.ts";
 
 /**
  * Returns the square root of the complex number.

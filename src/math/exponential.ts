@@ -1,5 +1,5 @@
 import { cmplx, type complex } from "../complex.ts";
-import { isInf, isNaN2, POS_INF } from "../utils.ts";
+import { isInf, isNaN2, POS_INF } from "../_utils.ts";
 
 /**
  * Returns the complex exponential of the complex argument `a`
@@ -20,7 +20,7 @@ export function exp(a: complex): complex {
 
     if (isInf(r)) {
         if (r > 0 && i === 0) {
-            return a;
+            return cmplx(r, i);
         }
 
         if (isInf(i) || isNaN2(i)) {
@@ -33,7 +33,7 @@ export function exp(a: complex): complex {
     }
 
     if (isNaN2(r) && i === 0) {
-        return a;
+        return cmplx(r, i);
     }
 
     const e = Math.exp(r);
