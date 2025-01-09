@@ -1,46 +1,19 @@
-import { isInf, isNaN2, isNumber, POS_INF } from "./_utils.ts";
-
-/** Type alias of {@linkcode Complex}. */
-export type complex = Complex;
+import { IS_NUMBER } from "./utils.ts";
 
 /**
- * Creates a new complex number.
- *
- * @param real The real part
- * @param imag The imaginary part
+ * Represents a complex number in rectangular form (standard form)
+ * which has a real part and an imaginary part.
  *
  * @example
  * ```ts
- * import { cmplx } from "@babia/complex";
+ * new complex(1, 9);  // 1 + 9i
+ * new complex(14, 6); // 14 + 6i
  *
- * cmplx(0);      // 0 + 0i
- * cmplx(2.2, 2); // 2.2 + 2i
+ * // from polar form
+ * complex.fromPolar(2, Math.PI / 2); // 2i
  * ```
  */
-export function cmplx(real: number, imag?: number): complex {
-    return new Complex(real, imag);
-}
-
-/**
- * Represents a complex number which has a real part and an imaginary part.
- *
- * @example
- * ```ts
- * import { Complex } from "@babia/complex";
- *
- * new Complex(1, 9);  // 1 + 9i
- * new Complex(14, 6); // 14 + 6i
- *
- * // A complex number can be also created from a real number
- * Complex.fromReal(4);    // 4 + 0i
- * Complex.fromReal(32.9); // 32.9 + 0i
- *
- * // or a purely imaginary number
- * Complex.fromImag(11); // 0 + 11i
- * Complex.fromImag(6);  // 0 + 6i
- * ```
- */
-export class Complex {
+export class complex {
     /** The real part of the complex number. */
     real: number;
     /** The imaginary part of the complex number. */
@@ -52,69 +25,22 @@ export class Complex {
     }
 
     /**
-     * Returns a complex number whose real part
-     * and imaginary part are both positive infinity.
-     */
-    static Inf(): complex {
-        return new Complex(POS_INF, POS_INF);
-    }
-
-    /**
-     * Returns a complex number whose real part
-     * and imaginary part are NaN (not-a-number).
-     */
-    static NaN(): complex {
-        return new Complex(NaN, NaN);
-    }
-
-    /**
-     * Creates a new complex number from a real number.
-     *
-     * @param real A real number
+     * Gets a complex number from its polar coordinates.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * Complex.fromReal(2); // 2 + 0i
-     * Complex.fromReal(0); // 0 + 0i
+     * complex.fromPolar(2, Math.PI / 2); // 0 + 2i
      * ```
+     *
+     * @param r The absolute value (or magnitude).
+     * @param phi The phase (or argument). Must be in the range `[-pi, pi]`.
+     * @returns A complex number in rectangular form `a + bi`.
      */
-    static fromReal(real: number): complex {
-        return new Complex(real);
-    }
-
-    /**
-     * Creates a new complex number from a purely imaginary number.
-     *
-     * @param imag A purely imaginary number
-     *
-     * @example
-     * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * Complex.fromImag(1);  // 0 + i
-     * Complex.fromImag(10); // 0 + 10i
-     * ```
-     */
-    static fromImag(imag: number): complex {
-        return new Complex(0, imag);
-    }
-
-    /**
-     * Returns the complex conjugate of the complex number.
-     *
-     * @example
-     * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(3, 9); // 3 + 9i
-     *
-     * cmplx.conj();                    // 3 - 9i
-     * ```
-     */
-    conj(): complex {
-        return new Complex(this.real, -this.imag);
+    static fromPolar(r: number, phi: number): complex {
+        return new complex(
+            r * Math.cos(phi),
+            r * Math.sin(phi),
+        );
     }
 
     /**
@@ -122,11 +48,7 @@ export class Complex {
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(3, 4); // 3 + 4i
-     *
-     * cmplx.abs();                     // 5
+     * new complex(3, 4).abs(); // abs(3 + 4i) = 5
      * ```
      */
     abs(): number {
@@ -134,250 +56,208 @@ export class Complex {
     }
 
     /**
-     * Returns the phase (or argument) of the complex number.
+     * Returns the argument (or phase) of the complex number.
+     * The value is in the range `[-pi, pi]`.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(2, 7); // 2 + 7i
-     *
-     * cmplx.phase();                   // 1.292496667...
+     * new complex(1, 1).arg(); // arg(1 + i) = pi/4
      * ```
      */
-    phase(): number {
+    arg(): number {
         return Math.atan2(this.imag, this.real);
     }
 
     /**
-     * Whether either the real part or imaginary part of
-     * the complex number is an infinity.
+     * Returns the complex conjugate of the complex number.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * new Complex(Infinity, 4).isInf();  // true
-     * new Complex(21, Infinity).isInf(); // true
-     * new Complex(0, 17).isInf();        // false
+     * new complex(-9, 10).conj(); // conj(-9 + 10i) = -9 - 10i
      * ```
      */
-    isInf(): boolean {
-        return isInf(this.real) || isInf(this.imag);
+    conj(): complex {
+        return new complex(this.real, -this.imag);
     }
 
     /**
-     * Whether either the real part or imaginary part of
-     * the complex number is NaN and neither is an infinity.
+     * Returns the negation of the complex number.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * new Complex(4, 4).isNaN();         // false
-     * new Complex(21, Infinity).isNaN(); // false
-     * new Complex(NaN, NaN).isNaN();     // true
+     * new complex(-9, 10).neg(); // neg(-9 + 10i) = 9 - 10i
      * ```
      */
-    isNaN(): boolean {
-        if (this.isInf()) {
-            return false;
-        }
-
-        return isNaN2(this.real) || isNaN2(this.imag);
+    neg(): complex {
+        return new complex(-this.real, -this.imag);
     }
 
     /**
-     * Whether the complex number is equal to 0.
+     * Returns the polar coordinates of the complex number
+     * which consists of two values:
+     * - `r`: the absolute value (or amplitude).
+     * - `θ`: the argument (or phase).
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * new Complex(4, 4).isZero(); // false
-     * new Complex(0, 0).isZero(); // true
+     * new complex(0, 1).polar(); // polar(i) => r = 1, θ = pi/2
      * ```
      */
-    isZero(): boolean {
-        return this.real === 0 && this.imag === 0;
+    polar(): [number, number] {
+        return [this.abs(), this.arg()];
     }
 
     /**
      * Adds a real number to the complex number.
      *
-     * @param other A real number.
-     *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(3, 2);  // 3 + 2i
-     *
-     * cmplx.add(3);                     // 6 + 2i
+     * new complex(5, 5).add(5); // (5 + 5i) + 5 = 10 + 5i
      * ```
+     *
+     * @param rhs The real number to be added.
+     * @returns The result of addition.
      */
-    add(other: number): complex;
+    add(rhs: number): complex;
     /**
      * Adds two complex numbers.
      *
-     * @param other The other complex number.
-     *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
+     * const lhs = new complex(3, 8);
+     * const rhs = new complex(6, 10);
      *
-     * const cmplx1 = new Complex(3, 2);  // 3 + 2i
-     * const cmplx2 = new Complex(4, -1); // 4 - i
-     *
-     * cmplx1.add(cmplx2);                // 7 + i
+     * lhs.add(rhs); // (3 + 8i) + (6 + 10i) = 9 + 18i
      * ```
+     *
+     * @param rhs The complex number to be added.
+     * @returns The result of addition.
      */
-    add(other: complex): complex;
-    add(other: number | complex): complex {
-        if (isNumber(other)) {
-            return new Complex(this.real + other, this.imag);
+    add(rhs: complex): complex;
+    add(rhs: number | complex): complex {
+        if (IS_NUMBER(rhs)) {
+            return new complex(this.real + rhs, this.imag);
         }
 
-        return new Complex(
-            this.real + other.real,
-            this.imag + other.imag,
+        return new complex(
+            this.real + rhs.real,
+            this.imag + rhs.imag,
         );
     }
 
     /**
      * Subtracts a real number from the complex number.
      *
-     * @param other A real number.
-     *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(3, 2);  // 3 + 2i
-     *
-     * cmplx.sub(6);                     // -3 + 2i
+     * new complex(5, 5).sub(5); // (5 + 5i) - 5 = 5i
      * ```
+     *
+     * @param rhs The real number to subtract.
+     * @returns The result of subtraction.
      */
-    sub(other: number): complex;
+    sub(rhs: number): complex;
     /**
-     * Subtracts two complex numbers.
-     *
-     * @param other The other complex number.
+     * Subtracts a complex number from the complex number.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
+     * const lhs = new complex(3, 8);
+     * const rhs = new complex(6, 10);
      *
-     * const cmplx1 = new Complex(3, 2);  // 3 + 2i
-     * const cmplx2 = new Complex(4, -1); // 4 - i
-     *
-     * cmplx1.sub(cmplx2);                // -1 + 3i
+     * lhs.sub(rhs); // (3 + 8i) - (6 + 10i) = -3 - 2i
      * ```
+     *
+     * @param rhs The complex number to subtract.
+     * @returns The result of subtraction.
      */
-    sub(other: complex): complex;
-    sub(other: number | complex): complex {
-        if (isNumber(other)) {
-            return new Complex(this.real - other, this.imag);
+    sub(rhs: complex): complex;
+    sub(rhs: number | complex): complex {
+        if (IS_NUMBER(rhs)) {
+            return new complex(this.real - rhs, this.imag);
         }
 
-        return new Complex(
-            this.real - other.real,
-            this.imag - other.imag,
+        return new complex(
+            this.real - rhs.real,
+            this.imag - rhs.imag,
         );
     }
 
     /**
-     * Calculates the product of a real number and the complex number.
-     *
-     * @param other A real number.
+     * Returns the product of a real number and the complex number.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(3, 2);  // 3 + 2i
-     *
-     * cmplx.mult(5);                    // 15 + 10i
+     * new complex(4, 5).mul(3); // (4 + 5i) * 3 = 12 + 15i
      * ```
+     *
+     * @param rhs The real number.
+     * @returns The result of multiplication.
      */
-    mult(other: number): complex;
+    mul(rhs: number): complex;
     /**
-     * Calculates the product of two complex numbers.
-     *
-     * @param other The other complex number.
+     * Returns the product of two complex numbers.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
+     * const lhs = new complex(2, 5);
+     * const rhs = new complex(8, 1);
      *
-     * const cmplx1 = new Complex(3, 2);  // 3 + 2i
-     * const cmplx2 = new Complex(4, -1); // 4 - i
-     *
-     * cmplx1.mult(cmplx2);               // 14 + 5i
+     * lhs.mul(rhs); // (2 + 5i) * (8 + i) = 11 + 42i
      * ```
+     *
+     * @param rhs The other complex number.
+     * @returns The result of multiplication.
      */
-    mult(other: complex): complex;
-    mult(other: number | complex): complex {
-        if (isNumber(other)) {
-            return new Complex(this.real * other, this.imag * other);
+    mul(rhs: complex): complex;
+    mul(rhs: number | complex): complex {
+        if (IS_NUMBER(rhs)) {
+            return new complex(this.real * rhs, this.imag * rhs);
         }
 
-        const a = this.real;
-        const b = this.imag;
-        const c = other.real;
-        const d = other.imag;
-
-        const real = a * c - b * d;
-        const imag = a * d + b * c;
-
-        return new Complex(real, imag);
+        return new complex(
+            (this.real * rhs.real) - (this.imag * rhs.imag),
+            (this.real * rhs.imag) + (this.imag * rhs.real),
+        );
     }
 
     /**
-     * Calculates the quotient of the complex number and a real number.
-     *
-     * @param other The other complex number.
+     * Divides the complex number by a real number.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
-     *
-     * const cmplx = new Complex(3, 2);  // 3 + 2i
-     *
-     * cmplx.div(2);                     // 1.5 + i
+     * new complex(14, 20).div(2); // (14 + 20i) / 2 = 7 + 10i
      * ```
+     *
+     * @param rhs The real number.
+     * @returns The result of division.
      */
-    div(other: number): complex;
+    div(rhs: number): complex;
     /**
-     * Calculates the quotient of two complex numbers.
-     *
-     * @param other The other complex number.
+     * Divides the complex number by another complex number.
      *
      * @example
      * ```ts
-     * import { Complex } from "@babia/complex";
+     * const lhs = new complex(9, 3);
+     * const rhs = new complex(1, 1);
      *
-     * const cmplx1 = new Complex(3, 2);  // 3 + 2i
-     * const cmplx2 = new Complex(4, -1); // 4 - i
-     *
-     * cmplx1.div(cmplx2);                // 0.5882352941176471 + 0.6470588235294118i
+     * lhs.div(rhs); // (9 + 3i) / (1 + i) = 9/2 + i/2
      * ```
+     *
+     * @param rhs The other complex number.
+     * @returns The result of division.
      */
-    div(other: complex): complex;
-    div(other: number | complex): complex {
-        if (isNumber(other)) {
-            return new Complex(this.real / other, this.imag / other);
+    div(rhs: complex): complex;
+    div(rhs: number | complex): complex {
+        if (IS_NUMBER(rhs)) {
+            return new complex(this.real / rhs, this.imag / rhs);
         }
 
-        const y = other.real * other.real + other.imag * other.imag;
-        const q = this.real * other.real + this.imag * other.imag;
-        const p = this.imag * other.real - this.real * other.imag;
+        const re = this.real * rhs.real + this.imag * rhs.imag;
+        const im = this.imag * rhs.real - this.real * rhs.imag;
+        const d = rhs.real * rhs.real + rhs.imag * rhs.imag;
 
-        if (y === 0) {
-            return Complex.Inf();
-        }
-
-        return new Complex(q / y, p / y);
+        return new complex(re / d, im / d);
     }
 
     toString(): string {

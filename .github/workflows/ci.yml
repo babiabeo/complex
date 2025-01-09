@@ -32,7 +32,7 @@ jobs:
           bun-version: ${{ matrix.bun }}
       
       - name: Install packages
-        run: bunx jsr add @cross/test @std/assert@^0.226.0
+        run: bunx jsr add @cross/test @std/assert@
 
       - name: Run tests canary
         run: bun test
@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno }}
 
@@ -70,7 +70,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [21.x]
+        node: [22.x]
         os:
           - ubuntu-22.04
           - windows-2022
@@ -101,7 +101,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v2
         with:
           deno-version: canary
 

@@ -51,5 +51,5 @@
  * @module
  */
 
-export * from "./src/complex.ts";
-export * as ComplexMath from "./src/math/mod.ts";
+// export * from "./src/complex.ts";
+// export * as ComplexMath from "./src/math/mod.ts";

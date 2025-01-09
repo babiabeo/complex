@@ -3,12 +3,12 @@
 [![JSR](https://jsr.io/badges/@babia/complex)](https://jsr.io/@babia/complex)
 [![CI](https://github.com/babiabeo/complex/actions/workflows/ci.yml/badge.svg)](https://github.com/babiabeo/complex/actions/workflows/ci.yml)
 
-A package provides implementation of complex numbers and mathematical functions
+A package provides the implementation of complex numbers and mathematical functions
 for complex numbers.
 
 ## What is a complex number?
 
-A complex number is an extension of the real numbers. It combines both real and
+A complex number is an extension of the real number. It combines both real and
 imaginary components. It can be expressed in form `a + bi`, where:
 
 - `a`: the real part
@@ -19,14 +19,14 @@ A real number can be regarded as a complex number `a + 0i`, whose the imaginary
 part is `0`. A purely imaginary number is a complex number `0 + bi`, whose the
 real part is `0`.
 
-## `Complex` class
+## `complex` class
 
-This package provides an implementation of complex numbers through the `Complex`
+This package provides an implementation of complex number through the `complex`
 class. It has methods to perform basic operations on complex numbers:
 
 ```ts
-const cmplx1 = new Complex(3, 1); // 3 + i
-const cmplx2 = new Complex(2, 9); // 2 + 9i
+const cmplx1 = new complex(3, 1); // 3 + i
+const cmplx2 = new complex(2, 9); // 2 + 9i
 
 cmplx1.add(cmplx2); // (3 + i) + (2 + 9i) = (5 + 10i)
 
@@ -45,14 +45,13 @@ cmplx2.phase(); // 1.3521273809209546
 
 ## `cmplx` function
 
-For convenience, the `cmplx` function was added in `v1.1.0` to help create
-complex numbers more easily.
+The `cmplx` function was added in `v1.1.0` to simplify the creation of complex numbers.
 
 ```ts
 cmplx(2, 3); // 2 + 3i
 ```
 
-Unlike the `Complex` class, the `cmplx` function requires the first argument
+Unlike the `complex` class, the `cmplx` function requires the first argument
 (the real part).
 
 ```ts
@@ -61,40 +60,13 @@ cmplx(0); // 0 + 0i
 
 ## `ComplexMath`
 
-Like [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math), `ComplexMath` provides basic mathematics functionality for
+There is also `ComplexMath` provides basic mathematics functionality for
 complex numbers.
 
-- Exponential and logarithm functions
-
-```ts
-ComplexMath.exp();
-ComplexMath.log();
-// ...
-```
-
-- Hyperbolic functions:
-
-```ts
-ComplexMath.sinh();
-ComplexMath.atanh();
-// ...
-```
-
-- Power functions:
-
-```ts
-ComplexMath.sqrt();
-ComplexMath.pow();
-// ...
-```
-
-- Trigonometric functions:
-
-```ts
-ComplexMath.asin();
-ComplexMath.tan();
-// ...
-```
+- Power functions: `pow`, `sqrt`, ...
+- Exponential and logarithm functions: `exp`, `log`,...
+- Trigonometric functions: `sin`, `acos`,...
+- Hyperbolic functions: `sinh`, `atanh`,...
 
 ## Related
 
