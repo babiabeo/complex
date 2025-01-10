@@ -45,6 +45,8 @@ export function sinh(z: complex): complex {
     }
 
     // sinh(+-0 +- i Inf) = +-0 + i NaN
+    // The sign of the real part is unspecified.
+    //
     // sinh(+-0 +- i NaN) = +-0 + i NaN
     //
     // sinh(x +- i Inf) = NaN + i NaN
@@ -64,6 +66,7 @@ export function sinh(z: complex): complex {
 
     // sinh(+-Inf +- i Inf) = +-Inf + i NaN
     // sinh(+-Inf +- i NaN) = +-Inf + i NaN
+    // The sign of the real part is unspecified.
     //
     // sinh(+-Inf + y) = +-Inf * (cos(y) + i sin(y))
     if (IS_INF(x)) {
@@ -144,7 +147,7 @@ export function cosh(z: complex): complex {
     }
 
     // cosh(+-Inf +- i Inf) = +-Inf + i NaN
-    // The sign of the real part is unspecified
+    // The sign of the real part is unspecified.
     //
     // cosh(+-Inf +- i NaN) = +-Inf + i NaN
     //
