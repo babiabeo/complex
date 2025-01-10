@@ -28,6 +28,8 @@ import { copysign, IS_FINITE, IS_INF, POS_INF } from "../utils.ts";
  * ```ts
  * sinh(new complex(1, 1)); // 0.6349639 + 1.2984576i
  * ```
+ *
+ * @param z A complex number.
  */
 export function sinh(z: complex): complex {
     const x = z.real;
@@ -109,6 +111,8 @@ export function sinh(z: complex): complex {
  * ```ts
  * cosh(new complex(1, 1)); // 0.8337300 + 0.9888977i
  * ```
+ *
+ * @param z A complex number.
  */
 export function cosh(z: complex): complex {
     const x = z.real;

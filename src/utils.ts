@@ -1,3 +1,5 @@
+export const TOLERANCE = 1e-7;
+
 export const POS_INF = Number.POSITIVE_INFINITY;
 export const NEG_INF = Number.NEGATIVE_INFINITY;
 
