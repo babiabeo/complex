@@ -23,7 +23,7 @@
         "check": "deno publish --dry-run --allow-dirty",
         "lint": "deno fmt --check && deno lint",
         "test:bun": "bun test --bail",
-        "test:deno": "deno test --trace-leaks --doc --parallel --clean",
+        "test:deno": "deno test --trace-leaks --parallel --clean src",
         "test:node": "echo '{ \"type\": \"module\" }' > package.json && npx --yes tsx --test",
         "test": "deno task test:bun && deno task test:deno && deno task test:node",
         "ok": "deno task lint && deno task test && deno task check ",

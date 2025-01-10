@@ -8,12 +8,14 @@ import { complex } from "../complex.ts";
  * const z = new complex(3, 1);
  * log(z); // log(3 + i) = 1.15129255 + 0.32175055i
  * ```
+ *
+ * @param z A complex number.
  */
 export function log(z: complex): complex {
     const x = Math.abs(z.real);
     const y = Math.abs(z.imag);
     const r = Math.hypot(x, y);
-    const phi = Math.atan2(z.real, z.imag);
+    const phi = z.arg();
 
     // if sqrt(0.5) <= r <= sqrt(3), use log1p() for more accurate results
     //
