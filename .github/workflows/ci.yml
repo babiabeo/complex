@@ -20,7 +20,7 @@ jobs:
         os:
           - ubuntu-22.04
           - windows-2022
-          - macOS-12
+          - macOS-14
 
     steps:
       - name: Setup repo
@@ -59,7 +59,7 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Install packages
-        run: deno add @cross/test @std/assert@^0.226.0
+        run: deno add jsr:@cross/test jsr:@std/assert
 
       - name: Run tests
         run: deno task test:deno
@@ -74,7 +74,7 @@ jobs:
         os:
           - ubuntu-22.04
           - windows-2022
-          - macOS-12
+          - macOS-14
 
     steps:
       - name: Setup repo
