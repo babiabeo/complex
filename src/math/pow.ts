@@ -7,7 +7,8 @@ import { log } from "./log.ts";
  *
  * @example
  * ```ts
- * pow(new complex(0, 1), new complex(0, 1)); // 0.2078796 + 0i
+ * const i = new complex(0, 1);
+ * pow(i, i); // 0.2078796 + 0i
  * ```
  *
  * @param z The "base" complex number.

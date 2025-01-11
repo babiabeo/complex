@@ -14,20 +14,22 @@ test("sinh() normal cases", () => {
 });
 
 test("sinh() special cases", () => {
+    const rd = 100 * Math.random();
+
     assertEquals(sinh(new complex(0, Infinity)), new complex(0, NaN));
     assertEquals(sinh(new complex(0, -Infinity)), new complex(0, NaN));
     assertEquals(sinh(new complex(-0, NaN)), new complex(-0, NaN));
 
     assertEquals(
-        sinh(new complex(Math.random() * 100, Infinity)),
+        sinh(new complex(rd, Infinity)),
         new complex(NaN, NaN),
     );
     assertEquals(
-        sinh(new complex(Math.random() * 100, -Infinity)),
+        sinh(new complex(rd, -Infinity)),
         new complex(NaN, NaN),
     );
     assertEquals(
-        sinh(new complex(Math.random() * 100, NaN)),
+        sinh(new complex(rd, NaN)),
         new complex(NaN, NaN),
     );
 
@@ -46,7 +48,7 @@ test("sinh() special cases", () => {
     assertEquals(sinh(new complex(NaN, NaN)), new complex(NaN, NaN));
     assertEquals(sinh(new complex(NaN, -Infinity)), new complex(NaN, NaN));
     assertEquals(
-        sinh(new complex(NaN, Math.random() * 100)),
+        sinh(new complex(NaN, rd)),
         new complex(NaN, NaN),
     );
 });
@@ -61,20 +63,22 @@ test("cosh() normal cases", () => {
 });
 
 test("cosh() special cases", () => {
+    const rd = 100 * Math.random();
+
     assertEquals(cosh(new complex(0, Infinity)), new complex(NaN, 0));
     assertEquals(cosh(new complex(0, -Infinity)), new complex(NaN, 0));
     assertEquals(cosh(new complex(-0, NaN)), new complex(NaN, -0));
 
     assertEquals(
-        cosh(new complex(Math.random() * 100, Infinity)),
+        cosh(new complex(rd, Infinity)),
         new complex(NaN, NaN),
     );
     assertEquals(
-        cosh(new complex(Math.random() * 100, -Infinity)),
+        cosh(new complex(rd, -Infinity)),
         new complex(NaN, NaN),
     );
     assertEquals(
-        cosh(new complex(Math.random() * 100, NaN)),
+        cosh(new complex(rd, NaN)),
         new complex(NaN, NaN),
     );
 
@@ -93,7 +97,7 @@ test("cosh() special cases", () => {
     assertEquals(cosh(new complex(NaN, NaN)), new complex(NaN, NaN));
     assertEquals(cosh(new complex(NaN, -Infinity)), new complex(NaN, NaN));
     assertEquals(
-        cosh(new complex(NaN, Math.random() * 100)),
+        cosh(new complex(NaN, rd)),
         new complex(NaN, NaN),
     );
 });

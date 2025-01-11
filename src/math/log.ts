@@ -27,7 +27,7 @@ export function log(z: complex): complex {
         const b = Math.min(x, y);
 
         return new complex(
-            Math.log1p((a - 1) * (a + 1) + b * b) / 2,
+            0.5 * Math.log1p((a - 1) * (a + 1) + b * b),
             phi,
         );
     }

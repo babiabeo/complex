@@ -27,6 +27,6 @@
         "test:node": "echo '{ \"type\": \"module\" }' > package.json && npx --yes tsx --test",
         "test": "deno task test:bun && deno task test:deno && deno task test:node",
         "ok": "deno task lint && deno task test && deno task check ",
-        "doc:view": "deno doc --html --name=\"@babia/complex\" ./mod.ts"
+        "doc:view": "deno doc --html --name=\"@babia/complex\" ./src/mod.ts"
     }
 }
