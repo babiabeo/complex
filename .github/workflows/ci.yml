@@ -32,7 +32,7 @@ jobs:
           bun-version: ${{ matrix.bun }}
       
       - name: Install packages
-        run: bunx jsr add @cross/test @std/assert@
+        run: bunx jsr add @cross/test @std/assert
 
       - name: Run tests canary
         run: bun test
