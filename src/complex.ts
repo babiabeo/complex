@@ -9,7 +9,7 @@ import { IS_NUMBER } from "./utils.ts";
  * new complex(1, 9);  // 1 + 9i
  * new complex(14, 6); // 14 + 6i
  *
- * // from polar form
+ * // from polar coordinates
  * complex.fromPolar(2, Math.PI / 2); // 2i
  * ```
  */

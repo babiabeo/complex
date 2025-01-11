@@ -4,12 +4,12 @@
 [![CI](https://github.com/babiabeo/complex/actions/workflows/ci.yml/badge.svg)](https://github.com/babiabeo/complex/actions/workflows/ci.yml)
 
 A package provides the implementation of complex numbers and mathematical functions
-for complex numbers.
+for them.
 
 ## What is a complex number?
 
 A complex number is an extension of the real number. It combines both real and
-imaginary components. It can be expressed in form `a + bi`, where:
+imaginary components. It can be expressed in the standard form `a + bi`, where:
 
 - `a`: the real part
 - `b`: the imaginary part
@@ -31,16 +31,16 @@ const cmplx2 = new complex(2, 9); // 2 + 9i
 cmplx1.add(cmplx2); // (3 + i) + (2 + 9i) = (5 + 10i)
 
 // Also works with real numbers
-cmplx1.add(3); // (3 + i) + 3 = (3 + i) + (3 + 0i) = (6 + i)
+cmplx1.add(3); // (3 + i) + 3 = (6 + i)
 ```
 
 Methods `conj()`, `abs()`, `phase()` return the conjugate, absolute value, and
 argument of the complex number respectively:
 
 ```ts
-cmplx2.conj(); // (2 - 9i)
-cmplx2.abs(); // ≈ 9.219544457292889 = Math.sqrt(85)
-cmplx2.phase(); // 1.3521273809209546
+cmplx2.conj();  // (2 - 9i)
+cmplx2.abs();   // 9.2195445
+cmplx2.phase(); // 1.3521274
 ```
 
 ## `cmplx` function
@@ -58,15 +58,17 @@ Unlike the `complex` class, the `cmplx` function requires the first argument
 cmplx(0); // 0 + 0i
 ```
 
-## `ComplexMath`
+## `cmath`
 
-There is also `ComplexMath` provides basic mathematics functionality for
-complex numbers.
+Besides `complex`, there is also `cmath` which is a collection of mathematical functions
+for complex numbers:
 
-- Power functions: `pow`, `sqrt`, ...
-- Exponential and logarithm functions: `exp`, `log`,...
-- Trigonometric functions: `sin`, `acos`,...
-- Hyperbolic functions: `sinh`, `atanh`,...
+- Power and logarithm functions: `exp`, `log`, `log10`, `sqrt`
+- Hyperbolic functions: `sinh`, `cosh`, `tanh`, `asinh`, `acosh`, `atanh`
+- Trigonometric functions: `sin`, `cos`, `tan`, `cot`, `asin`, `acos`, `atan` 
+
+> [!NOTE]
+> Do not confuse with `<cmath>` header in C++
 
 ## Related
 

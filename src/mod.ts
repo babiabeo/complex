@@ -51,5 +51,11 @@
  * @module
  */
 
-// export * from "./src/complex.ts";
-// export * as ComplexMath from "./src/math/mod.ts";
+import { complex } from "./complex.ts";
+import * as cmath from "./math/mod.ts";
+
+function cmplx(re: number, im?: number): complex {
+    return new complex(re, im);
+}
+
+export { cmath, cmplx, complex };
