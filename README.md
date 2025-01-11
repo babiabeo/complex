@@ -1,10 +1,25 @@
-# complex
+# `@babia/complex`
 
 [![JSR](https://jsr.io/badges/@babia/complex)](https://jsr.io/@babia/complex)
 [![CI](https://github.com/babiabeo/complex/actions/workflows/ci.yml/badge.svg)](https://github.com/babiabeo/complex/actions/workflows/ci.yml)
 
-A package provides the implementation of complex numbers and mathematical functions
-for them.
+A package providing the implementation of complex numbers and mathematical
+functions.
+
+#### Install
+
+```sh
+# deno
+deno add jsr:@babia/complex
+
+# node.js
+npx jsr add @babia/complex
+yarn dlx jsr add @babia/complex
+pnpm dlx jsr add @babia/complex
+
+# bun
+bunx jsr add @babia/complex
+```
 
 ## What is a complex number?
 
@@ -34,25 +49,26 @@ cmplx1.add(cmplx2); // (3 + i) + (2 + 9i) = (5 + 10i)
 cmplx1.add(3); // (3 + i) + 3 = (6 + i)
 ```
 
-Methods `conj()`, `abs()`, `phase()` return the conjugate, absolute value, and
-argument of the complex number respectively:
+Methods `abs()`, `conj()`, `phase()` return the absolute value, the conjugate,
+and the argument of the complex number respectively:
 
 ```ts
-cmplx2.conj();  // (2 - 9i)
-cmplx2.abs();   // 9.2195445
+cmplx2.abs(); // 9.2195445
+cmplx2.conj(); // (2 - 9i)
 cmplx2.phase(); // 1.3521274
 ```
 
 ## `cmplx` function
 
-The `cmplx` function was added in `v1.1.0` to simplify the creation of complex numbers.
+The `cmplx` function was added in `v1.1.0` to simplify the creation of complex
+numbers.
 
 ```ts
 cmplx(2, 3); // 2 + 3i
 ```
 
-Unlike the `complex` class, the `cmplx` function requires the first argument
-(the real part).
+Unlike `complex` class, the `cmplx` function requires the first argument (the
+real part).
 
 ```ts
 cmplx(0); // 0 + 0i
@@ -60,12 +76,12 @@ cmplx(0); // 0 + 0i
 
 ## `cmath`
 
-Besides `complex`, there is also `cmath` which is a collection of mathematical functions
-for complex numbers:
+Besides `complex`, there is also `cmath` which is a collection of mathematical
+functions for complex numbers:
 
 - Power and logarithm functions: `exp`, `log`, `log10`, `sqrt`
 - Hyperbolic functions: `sinh`, `cosh`, `tanh`, `asinh`, `acosh`, `atanh`
-- Trigonometric functions: `sin`, `cos`, `tan`, `cot`, `asin`, `acos`, `atan` 
+- Trigonometric functions: `sin`, `cos`, `tan`, `cot`, `asin`, `acos`, `atan`
 
 > [!NOTE]
 > Do not confuse with `<cmath>` header in C++

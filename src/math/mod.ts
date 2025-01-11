@@ -1,3 +1,13 @@
+/**
+ * A collection of mathematical functions for operations on complex numbers,
+ *
+ * There are a number of functions providing robust handling for special
+ * cases where the real or imaginary parts are infinity or NaN, ensuring
+ * accurate and predictable results in all scenarios.
+ *
+ * @module
+ */
+
 export * from "./asin.ts";
 export * from "./asinh.ts";
 export * from "./atan.ts";

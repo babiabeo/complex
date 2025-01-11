@@ -16,7 +16,6 @@
     "exclude": [
         "docs",
         ".github",
-        "README.md",
         "LICENSE"
     ],
     "tasks": {
