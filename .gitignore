@@ -1,4 +1,7 @@
-.vscode
-deno.lock
 docs
+
+# lock files
 package.json
+package-lock.json
+deno.lock
+bun.lockb
