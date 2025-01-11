@@ -81,7 +81,7 @@ functions for complex numbers:
 
 - Power and logarithm functions: `exp`, `log`, `log10`, `sqrt`
 - Hyperbolic functions: `sinh`, `cosh`, `tanh`, `asinh`, `acosh`, `atanh`
-- Trigonometric functions: `sin`, `cos`, `tan`, `cot`, `asin`, `acos`, `atan`
+- Trigonometric functions: `sin`, `cos`, `tan`, `asin`, `acos`, `atan`
 
 > [!NOTE]
 > Do not confuse with `<cmath>` header in C++
